@@ -19,7 +19,7 @@ import serial
 #arduinoMBC = find_arduino(serial_number='85430353531351B09121')
 #arduinoFBC = find_arduino(serial_number='85430353531351B09121')
 
-arduino = serial.Serial('/dev/tty.usbmodem1421', 115200)
+arduinoRBC = serial.Serial('/dev/tty.usbmodem1421', 115200)
 
 from PyQt5.QtCore import QThread
 os.putenv('SDL_VIDEODRIVER', 'fbcon')

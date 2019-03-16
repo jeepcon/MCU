@@ -1,5 +1,5 @@
 ######################################################
-#       Connect app buttons to action definitions    #
+#       Connect Top app buttons to action definitions    #
 ######################################################
         self.emLights_btn.clicked.connect(self.emLights_btn_def)
         self.nav_btn.clicked.connect(self.vicControl_btn_def)

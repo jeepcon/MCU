@@ -52,7 +52,6 @@
 
     def emLightMaster(self):
         if self.emLightMaster_btn.isChecked():
-            print ("emLightMaster_ON")
             self.frontLightFlasher_btn.setChecked(True)
             self.backLightFlasher_btn.setChecked(True)
             self.bodyLightFlasher_btn.setChecked(True)
@@ -60,7 +59,6 @@
             self.hazardFlasher_btn.setChecked(True)
             arduino.write(str.encode('EMLightsON'))
         else:
-            print ("emLightMaster_OFF")
             self.frontLightFlasher_btn.setChecked(False)
             self.backLightFlasher_btn.setChecked(False)
             self.bodyLightFlasher_btn.setChecked(False)
@@ -70,17 +68,15 @@
 
     def headLight(self, value):
         if value == 1:
-            print ("RunningLights ON")
+            arduino.write(str.encode('RunningLightsON'))
             self.headLight_slider.setStyleSheet("QSlider::groove:horizontal {height: 60px;image: url(:/images/slider/LightsSlider_BG.png);} QSlider::handle:horizontal {width: 125px; image: url(:/images/slider/Parking.png);}")
 
-            arduino.write(str.encode('RunningLightsON'))
-
         elif value == 2:
-            print ("HeadLights ON")
+            arduino.write(str.encode('HeadLightLOW'))
             self.headLight_slider.setStyleSheet("QSlider::groove:horizontal {height: 60px;image: url(:/images/slider/LightsSlider_BG.png);} QSlider::handle:horizontal {width: 125px; image: url(:/images/slider/On.png);}")
 
         elif value == 3:
-            print ("Highbeam ON")
+            arduino.write(str.encode('HeadLightHIGH'))
             self.headLight_slider.setStyleSheet("QSlider::groove:horizontal {height: 60px;image: url(:/images/slider/LightsSlider_BG.png);}QSlider::handle:horizontal {width: 125px; image: url(:/images/slider/High.png);}")
 
         elif value == 4:
@@ -88,14 +84,12 @@
             self.headLight_slider.setStyleSheet("QSlider::groove:horizontal {height: 60px;image: url(:/images/slider/LightsSlider_BG.png);}QSlider::handle:horizontal {width: 125px; image: url(:/images/slider/Auto.png);}")
 
         else:
-            print ("headLight OFF")
-            self.headLight_slider.setStyleSheet("QSlider::groove:horizontal {height: 60px;image: url(:/images/slider/LightsSlider_BG.png);}QSlider::handle:horizontal {width: 125px; image: url(:/images/slider/Off.png);}")
-
             arduino.write(str.encode('RunningLightsOFF'))
+            arduino.write(str.encode('HeadLightOFF'))
+            self.headLight_slider.setStyleSheet("QSlider::groove:horizontal {height: 60px;image: url(:/images/slider/LightsSlider_BG.png);}QSlider::handle:horizontal {width: 125px; image: url(:/images/slider/Off.png);}")
 
     def hazardFlasher(self):
         if self.hazardFlasher_btn.isChecked():
-            print ("hazardFlasher ON")
             arduino.write(str.encode('LeftTurnON'))
             arduino.write(str.encode('RightTurnON'))
         else:
@@ -119,11 +113,11 @@
             print ("headLightFlasher OFF")
 
     def WasherPressed(self):
-            print ("Washer ON")
+            arduino.write(str.encode('WasherON'))
             self.Washer_btn.setChecked(True)
 
     def WasherReleased(self):
-            print ("Washer OFF")
+            arduino.write(str.encode('WasherOFF'))
             self.Washer_btn.setChecked(False)
 
     def WinchInPressed(self):
@@ -154,49 +148,45 @@
 
     def bodyLightFlasher(self):
         if self.bodyLightFlasher_btn.isChecked():
-            print ("bodyLightFlasher ON")
+            arduino.write(str.encode('BodyEMLightsON'))
         else:
-            print ("bodyLightFlasher OFF")
+            arduino.write(str.encode('BodyEMLightsOFF'))
 
     def siren(self, value):
         if value == 1:
-            print ("Wail ON")
+            arduino.write(str.encode('SirenWailON'))
             self.siren_slider.setStyleSheet("QSlider::groove:horizontal {height: 60px;image: url(:/images/slider/SirenSlider_BG.png);} QSlider::handle:horizontal {width: 125px; image: url(:/images/slider/Wail.png);}")
 
         elif value == 2:
-            print ("Warble ON")
+            arduino.write(str.encode('SirenYelpON'))
             self.siren_slider.setStyleSheet("QSlider::groove:horizontal {height: 60px;image: url(:/images/slider/SirenSlider_BG.png);} QSlider::handle:horizontal {width: 125px; image: url(:/images/slider/Warble.png);}")
 
         elif value == 3:
-            print ("Whoop ON")
+            arduino.write(str.encode('SirenPhaserON'))
             self.siren_slider.setStyleSheet("QSlider::groove:horizontal {height: 60px;image: url(:/images/slider/SirenSlider_BG.png);} QSlider::handle:horizontal {width: 125px; image: url(:/images/slider/Whoop.png);}")
 
         else:
-            print ("Siren OFF")
+            arduino.write(str.encode('SirenOFF'))
             self.siren_slider.setStyleSheet("QSlider::groove:horizontal {height: 60px;image: url(:/images/slider/SirenSlider_BG.png);} QSlider::handle:horizontal {width: 125px; image: url(:/images/slider/Off.png);}")
 
-
     def hornPressed(self):
-            print ("Horn ON")
+            arduino.write(str.encode('HornON'))
             self.horn_btn.setChecked(True)
 
     def hornReleased(self):
-            print ("Horn OFF")
+            arduino.write(str.encode('HornOFF'))
             self.horn_btn.setChecked(False)
 
     def wiper(self, value):
         if value == 1:
-            print ("Wipers LOW")
             arduino.write(str.encode('WiperLowON'))
             self.wiper_slider.setStyleSheet("QSlider::groove:horizontal {height: 60px;image: url(:/images/slider/WiperSlider_BG.png);}QSlider::handle:horizontal {width: 125px;image: url(:/images/slider/Low.png);}")
 
         elif value == 2:
-            print ("Wipers HIGH")
             arduino.write(str.encode('WiperHighON'))
             self.wiper_slider.setStyleSheet("QSlider::groove:horizontal {height: 60px;image: url(:/images/slider/WiperSlider_BG.png);}QSlider::handle:horizontal {width: 125px;image: url(:/images/slider/High.png);}")
 
         else:
-            print ("Wipers OFF")
             arduino.write(str.encode('WiperOFF'))
             self.wiper_slider.setStyleSheet("QSlider::groove:horizontal {height: 60px;image: url(:/images/slider/WiperSlider_BG.png);}QSlider::handle:horizontal {width: 125px;image: url(:/images/slider/Off.png);}")
 
@@ -211,8 +201,6 @@
         else:
             print ("backLightFlasher OFF")
             arduino.write(str.encode('BackEMLightsON'))
-
-
 
 ##################
 

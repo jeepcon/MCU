@@ -102,15 +102,25 @@
 
     def frontLightFlasher(self):
         if self.frontLightFlasher_btn.isChecked():
-            print ("frontLightFlasher ON")
+            arduino.write(str.encode('FrontEMLightsON'))
         else:
-            print ("frontLightFlasher OFF")
+            arduino.write(str.encode('FrontEMLightsOFF'))
 
     def headLightFlasher(self):
         if self.headLightFlasher_btn.isChecked():
             print ("headLightFlasher ON")
         else:
             print ("headLightFlasher OFF")
+
+    def OBA(self):
+        if self.OBA_btn.isChecked():
+            arduino.write(str.encode('OBAON'))
+        else:
+            arduino.write(str.encode('OBAOFF'))
+
+    def garageDoor(self):
+
+    def starterMotor(self):
 
     def WasherPressed(self):
             arduino.write(str.encode('WasherON'))
@@ -135,12 +145,6 @@
     def WinchOutReleased(self):
             print ("Winch Out - Stopped")
             self.WinchOut_btn.setChecked(False)
-
-    def OBA(self):
-        if self.OBA_btn.isChecked():
-            arduino.write(str.encode('OBAON'))
-        else:
-            arduino.write(str.encode('OBAOFF'))
             
 #################################################################
 #        Mid Body Controller Button actions definitions         #
@@ -152,6 +156,10 @@
         else:
             arduino.write(str.encode('BodyEMLightsOFF'))
 
+    def floodRight(self):
+
+    def floodLeft(self):
+    
     def siren(self, value):
         if value == 1:
             arduino.write(str.encode('SirenWailON'))
@@ -190,6 +198,13 @@
             arduino.write(str.encode('WiperOFF'))
             self.wiper_slider.setStyleSheet("QSlider::groove:horizontal {height: 60px;image: url(:/images/slider/WiperSlider_BG.png);}QSlider::handle:horizontal {width: 125px;image: url(:/images/slider/Off.png);}")
 
+    def cbRadio(self):
+
+    def vhfRadio(self):
+
+    def intercomSystem(self):
+
+
 ##################################################################
 #        Rear Body Controller Button actions definitions         #
 ##################################################################
@@ -201,6 +216,12 @@
         else:
             print ("backLightFlasher OFF")
             arduino.write(str.encode('BackEMLightsON'))
+
+    def fuelPump(self):
+    
+    def backupLights(self):
+    
+    
 
 ##################
 

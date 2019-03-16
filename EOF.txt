@@ -29,6 +29,17 @@
         self.siren_slider.valueChanged.connect(self.siren)
         self.horn_btn.pressed.connect(self.hornPressed)
         self.horn_btn.released.connect(self.hornReleased)
+        # self.garageDoor_btn.pressed.connect(self.garageDoorPressed)
+        # self.garageDoor_btn.released.connect(self.garageDoorReleased)
+        # self.starterMotor_btn.pressed.connect(self.starterMotorPressed)
+        # self.starterMotor_btn.released.connect(self.starterMotorReleased)
+        # self.floodRight_btn.clicked.connect(self.floodRight)
+        # self.floodLeft_btn.clicked.connect(self.floodLeft)
+        # self.cbRadio_btn.clicked.connect(self.cbRadio)
+        # self.vhfRadio_btn.clicked.connect(self.vhfRadio)
+        # self.intercomSystem_btn.clicked.connect(self.intercomSystem)
+        # self.fuelPump_btn.clicked.connect(self.fuelPump)
+        # self.backupLights_btn.clicked.connect(self.backupLights)
 
 ##########################################
 #       App button action definitions    #
@@ -57,15 +68,19 @@
             self.bodyLightFlasher_btn.setChecked(True)
             self.headLightFlasher_btn.setChecked(True)
             self.hazardFlasher_btn.setChecked(True)
-            arduino.write(str.encode('EMLightsON'))
+            arduino.write(str.encode('FrontEMLightsON'))
+            arduino.write(str.encode('BodyEMLightsON'))
+            arduino.write(str.encode('BackEMLightsON'))
         else:
             self.frontLightFlasher_btn.setChecked(False)
             self.backLightFlasher_btn.setChecked(False)
             self.bodyLightFlasher_btn.setChecked(False)
             self.headLightFlasher_btn.setChecked(False)
             self.hazardFlasher_btn.setChecked(False)
-            arduino.write(str.encode('EMLightsOFF'))
-
+            arduino.write(str.encode('FrontEMLightsOFF'))
+            arduino.write(str.encode('BodyEMLightsON'))
+            arduino.write(str.encode('BackEMLightsON'))
+            
     def headLight(self, value):
         if value == 1:
             arduino.write(str.encode('RunningLightsON'))
@@ -118,33 +133,45 @@
         else:
             arduino.write(str.encode('OBAOFF'))
 
-    def garageDoor(self):
+    def garageDoorPressed(self):
+        arduino.write(str.encode('GarageDoorON'))
+        # self.garageDoor_btn.setChecked(True)
+    
+    def garageDoorReleased(self):
+        arduino.write(str.encode('GarageDoorOFF'))
+        # self.garageDoor_btn.setChecked(False)
+        
+    def starterMotorPressed(self):
+        arduino.write(str.encode('StarterON'))
+        # self.starterMotor_btn.setChecked(True)
 
-    def starterMotor(self):
-
+    def starterMotorReleased(self):
+        arduino.write(str.encode('StarterOFF'))
+        # self.starterMotor_btn.setChecked(False)
+        
     def WasherPressed(self):
-            arduino.write(str.encode('WasherON'))
-            self.Washer_btn.setChecked(True)
+        arduino.write(str.encode('WasherON'))
+        self.Washer_btn.setChecked(True)
 
     def WasherReleased(self):
-            arduino.write(str.encode('WasherOFF'))
-            self.Washer_btn.setChecked(False)
+        arduino.write(str.encode('WasherOFF'))
+        self.Washer_btn.setChecked(False)
 
     def WinchInPressed(self):
-            print ("Winch In - Started")
-            self.WinchIn_btn.setChecked(True)
+        print ("Winch In - Started")
+        self.WinchIn_btn.setChecked(True)
 
     def WinchInReleased(self):
-            print ("Winch In - Stopped")
-            self.WinchIn_btn.setChecked(False)
+        print ("Winch In - Stopped")
+        self.WinchIn_btn.setChecked(False)
 
     def WinchOutPressed(self):
-            print ("Winch Out - Started")
-            self.WinchOut_btn.setChecked(True)
+        print ("Winch Out - Started")
+        self.WinchOut_btn.setChecked(True)
 
     def WinchOutReleased(self):
-            print ("Winch Out - Stopped")
-            self.WinchOut_btn.setChecked(False)
+        print ("Winch Out - Stopped")
+        self.WinchOut_btn.setChecked(False)
             
 #################################################################
 #        Mid Body Controller Button actions definitions         #
@@ -157,9 +184,17 @@
             arduino.write(str.encode('BodyEMLightsOFF'))
 
     def floodRight(self):
+        # if self.floodRight_btn.isChecked():
+        #     arduino.write(str.encode('FloodRightON'))
+        # else:
+        #     arduino.write(str.encode('FloodRightOFF'))
 
     def floodLeft(self):
-    
+        # if self.floodLeft_btn.isChecked():
+        #     arduino.write(str.encode('FloodLeftON'))
+        # else:
+        #     arduino.write(str.encode('FloodLeftOFF'))
+
     def siren(self, value):
         if value == 1:
             arduino.write(str.encode('SirenWailON'))
@@ -199,28 +234,44 @@
             self.wiper_slider.setStyleSheet("QSlider::groove:horizontal {height: 60px;image: url(:/images/slider/WiperSlider_BG.png);}QSlider::handle:horizontal {width: 125px;image: url(:/images/slider/Off.png);}")
 
     def cbRadio(self):
-
+        # if self.cbRadio_btn.isChecked():
+        #     arduino.write(str.encode('CBRadioON'))
+        # else:
+        #     arduino.write(str.encode('CBRadioOFF'))
+        
     def vhfRadio(self):
-
+        # if self.vhfRadio_btn.isChecked():
+        #     arduino.write(str.encode('VHFRadioON'))
+        # else:
+        #     arduino.write(str.encode('VHFRadioOFF'))
+        
     def intercomSystem(self):
-
-
+        # if self.intercomSystem_btn.isChecked():
+        #     arduino.write(str.encode('IntercomON'))
+        # else:
+        #     arduino.write(str.encode('IntercomOFF'))
+        
 ##################################################################
 #        Rear Body Controller Button actions definitions         #
 ##################################################################
 
     def backLightFlasher(self):
         if self.backLightFlasher_btn.isChecked():
-            print ("backLightFlasher ON")
             arduino.write(str.encode('BackEMLightsON'))
         else:
-            print ("backLightFlasher OFF")
             arduino.write(str.encode('BackEMLightsON'))
 
     def fuelPump(self):
-    
+        # if self.fuelPump_btn.isChecked():
+        #     arduino.write(str.encode('FuelPumpON'))
+        # else:
+        #     arduino.write(str.encode('FuelPumpOFF'))
+        
     def backupLights(self):
-    
+        # if self.backupLights_btn.isChecked():
+        #     arduino.write(str.encode('BackupLightsON'))
+        # else:
+        #     arduino.write(str.encode('BackupLightsOFF'))    
     
 
 ##################

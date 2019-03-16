@@ -68,30 +68,30 @@
             self.bodyLightFlasher_btn.setChecked(True)
             self.headLightFlasher_btn.setChecked(True)
             self.hazardFlasher_btn.setChecked(True)
-            arduino.write(str.encode('FrontEMLightsON'))
-            arduino.write(str.encode('BodyEMLightsON'))
-            arduino.write(str.encode('BackEMLightsON'))
+            arduinoRBC.write(str.encode('FrontEMLightsON'))
+            arduinoRBC.write(str.encode('BodyEMLightsON'))
+            arduinoRBC.write(str.encode('BackEMLightsON'))
         else:
             self.frontLightFlasher_btn.setChecked(False)
             self.backLightFlasher_btn.setChecked(False)
             self.bodyLightFlasher_btn.setChecked(False)
             self.headLightFlasher_btn.setChecked(False)
             self.hazardFlasher_btn.setChecked(False)
-            arduino.write(str.encode('FrontEMLightsOFF'))
-            arduino.write(str.encode('BodyEMLightsON'))
-            arduino.write(str.encode('BackEMLightsON'))
+            arduinoRBC.write(str.encode('FrontEMLightsOFF'))
+            arduinoRBC.write(str.encode('BodyEMLightsON'))
+            arduinoRBC.write(str.encode('BackEMLightsON'))
             
     def headLight(self, value):
         if value == 1:
-            arduino.write(str.encode('RunningLightsON'))
+            arduinoRBC.write(str.encode('RunningLightsON'))
             self.headLight_slider.setStyleSheet("QSlider::groove:horizontal {height: 60px;image: url(:/images/slider/LightsSlider_BG.png);} QSlider::handle:horizontal {width: 125px; image: url(:/images/slider/Parking.png);}")
 
         elif value == 2:
-            arduino.write(str.encode('HeadLightLOW'))
+            arduinoRBC.write(str.encode('HeadLightLOW'))
             self.headLight_slider.setStyleSheet("QSlider::groove:horizontal {height: 60px;image: url(:/images/slider/LightsSlider_BG.png);} QSlider::handle:horizontal {width: 125px; image: url(:/images/slider/On.png);}")
 
         elif value == 3:
-            arduino.write(str.encode('HeadLightHIGH'))
+            arduinoRBC.write(str.encode('HeadLightHIGH'))
             self.headLight_slider.setStyleSheet("QSlider::groove:horizontal {height: 60px;image: url(:/images/slider/LightsSlider_BG.png);}QSlider::handle:horizontal {width: 125px; image: url(:/images/slider/High.png);}")
 
         elif value == 4:
@@ -99,17 +99,17 @@
             self.headLight_slider.setStyleSheet("QSlider::groove:horizontal {height: 60px;image: url(:/images/slider/LightsSlider_BG.png);}QSlider::handle:horizontal {width: 125px; image: url(:/images/slider/Auto.png);}")
 
         else:
-            arduino.write(str.encode('RunningLightsOFF'))
-            arduino.write(str.encode('HeadLightOFF'))
+            arduinoRBC.write(str.encode('RunningLightsOFF'))
+            arduinoRBC.write(str.encode('HeadLightOFF'))
             self.headLight_slider.setStyleSheet("QSlider::groove:horizontal {height: 60px;image: url(:/images/slider/LightsSlider_BG.png);}QSlider::handle:horizontal {width: 125px; image: url(:/images/slider/Off.png);}")
 
     def hazardFlasher(self):
         if self.hazardFlasher_btn.isChecked():
-            arduino.write(str.encode('LeftTurnON'))
-            arduino.write(str.encode('RightTurnON'))
+            arduinoRBC.write(str.encode('LeftTurnON'))
+            arduinoRBC.write(str.encode('RightTurnON'))
         else:
-            arduino.write(str.encode('LeftTurnOFF'))
-            arduino.write(str.encode('RightTurnOFF'))
+            arduinoRBC.write(str.encode('LeftTurnOFF'))
+            arduinoRBC.write(str.encode('RightTurnOFF'))
             
 ##################################################################
 #       Front Body Controller Button actions definitions         #
@@ -117,9 +117,9 @@
 
     def frontLightFlasher(self):
         if self.frontLightFlasher_btn.isChecked():
-            arduino.write(str.encode('FrontEMLightsON'))
+            arduinoRBC.write(str.encode('FrontEMLightsON'))
         else:
-            arduino.write(str.encode('FrontEMLightsOFF'))
+            arduinoRBC.write(str.encode('FrontEMLightsOFF'))
 
     def headLightFlasher(self):
         if self.headLightFlasher_btn.isChecked():
@@ -129,32 +129,32 @@
 
     def OBA(self):
         if self.OBA_btn.isChecked():
-            arduino.write(str.encode('OBAON'))
+            arduinoRBC.write(str.encode('OBAON'))
         else:
-            arduino.write(str.encode('OBAOFF'))
+            arduinoRBC.write(str.encode('OBAOFF'))
 
     def garageDoorPressed(self):
-        arduino.write(str.encode('GarageDoorON'))
+        arduinoRBC.write(str.encode('GarageDoorON'))
         # self.garageDoor_btn.setChecked(True)
     
     def garageDoorReleased(self):
-        arduino.write(str.encode('GarageDoorOFF'))
+        arduinoRBC.write(str.encode('GarageDoorOFF'))
         # self.garageDoor_btn.setChecked(False)
         
     def starterMotorPressed(self):
-        arduino.write(str.encode('StarterON'))
+        arduinoRBC.write(str.encode('StarterON'))
         # self.starterMotor_btn.setChecked(True)
 
     def starterMotorReleased(self):
-        arduino.write(str.encode('StarterOFF'))
+        arduinoRBC.write(str.encode('StarterOFF'))
         # self.starterMotor_btn.setChecked(False)
         
     def WasherPressed(self):
-        arduino.write(str.encode('WasherON'))
+        arduinoRBC.write(str.encode('WasherON'))
         self.Washer_btn.setChecked(True)
 
     def WasherReleased(self):
-        arduino.write(str.encode('WasherOFF'))
+        arduinoRBC.write(str.encode('WasherOFF'))
         self.Washer_btn.setChecked(False)
 
     def WinchInPressed(self):
@@ -179,77 +179,77 @@
 
     def bodyLightFlasher(self):
         if self.bodyLightFlasher_btn.isChecked():
-            arduino.write(str.encode('BodyEMLightsON'))
+            arduinoRBC.write(str.encode('BodyEMLightsON'))
         else:
-            arduino.write(str.encode('BodyEMLightsOFF'))
+            arduinoRBC.write(str.encode('BodyEMLightsOFF'))
 
     def floodRight(self):
         # if self.floodRight_btn.isChecked():
-        #     arduino.write(str.encode('FloodRightON'))
+        #     arduinoRBC.write(str.encode('FloodRightON'))
         # else:
-        #     arduino.write(str.encode('FloodRightOFF'))
+        #     arduinoRBC.write(str.encode('FloodRightOFF'))
 
     def floodLeft(self):
         # if self.floodLeft_btn.isChecked():
-        #     arduino.write(str.encode('FloodLeftON'))
+        #     arduinoRBC.write(str.encode('FloodLeftON'))
         # else:
-        #     arduino.write(str.encode('FloodLeftOFF'))
+        #     arduinoRBC.write(str.encode('FloodLeftOFF'))
 
     def siren(self, value):
         if value == 1:
-            arduino.write(str.encode('SirenWailON'))
+            arduinoRBC.write(str.encode('SirenWailON'))
             self.siren_slider.setStyleSheet("QSlider::groove:horizontal {height: 60px;image: url(:/images/slider/SirenSlider_BG.png);} QSlider::handle:horizontal {width: 125px; image: url(:/images/slider/Wail.png);}")
 
         elif value == 2:
-            arduino.write(str.encode('SirenYelpON'))
+            arduinoRBC.write(str.encode('SirenYelpON'))
             self.siren_slider.setStyleSheet("QSlider::groove:horizontal {height: 60px;image: url(:/images/slider/SirenSlider_BG.png);} QSlider::handle:horizontal {width: 125px; image: url(:/images/slider/Warble.png);}")
 
         elif value == 3:
-            arduino.write(str.encode('SirenPhaserON'))
+            arduinoRBC.write(str.encode('SirenPhaserON'))
             self.siren_slider.setStyleSheet("QSlider::groove:horizontal {height: 60px;image: url(:/images/slider/SirenSlider_BG.png);} QSlider::handle:horizontal {width: 125px; image: url(:/images/slider/Whoop.png);}")
 
         else:
-            arduino.write(str.encode('SirenOFF'))
+            arduinoRBC.write(str.encode('SirenOFF'))
             self.siren_slider.setStyleSheet("QSlider::groove:horizontal {height: 60px;image: url(:/images/slider/SirenSlider_BG.png);} QSlider::handle:horizontal {width: 125px; image: url(:/images/slider/Off.png);}")
 
     def hornPressed(self):
-            arduino.write(str.encode('HornON'))
+            arduinoRBC.write(str.encode('HornON'))
             self.horn_btn.setChecked(True)
 
     def hornReleased(self):
-            arduino.write(str.encode('HornOFF'))
+            arduinoRBC.write(str.encode('HornOFF'))
             self.horn_btn.setChecked(False)
 
     def wiper(self, value):
         if value == 1:
-            arduino.write(str.encode('WiperLowON'))
+            arduinoRBC.write(str.encode('WiperLowON'))
             self.wiper_slider.setStyleSheet("QSlider::groove:horizontal {height: 60px;image: url(:/images/slider/WiperSlider_BG.png);}QSlider::handle:horizontal {width: 125px;image: url(:/images/slider/Low.png);}")
 
         elif value == 2:
-            arduino.write(str.encode('WiperHighON'))
+            arduinoRBC.write(str.encode('WiperHighON'))
             self.wiper_slider.setStyleSheet("QSlider::groove:horizontal {height: 60px;image: url(:/images/slider/WiperSlider_BG.png);}QSlider::handle:horizontal {width: 125px;image: url(:/images/slider/High.png);}")
 
         else:
-            arduino.write(str.encode('WiperOFF'))
+            arduinoRBC.write(str.encode('WiperOFF'))
             self.wiper_slider.setStyleSheet("QSlider::groove:horizontal {height: 60px;image: url(:/images/slider/WiperSlider_BG.png);}QSlider::handle:horizontal {width: 125px;image: url(:/images/slider/Off.png);}")
 
     def cbRadio(self):
         # if self.cbRadio_btn.isChecked():
-        #     arduino.write(str.encode('CBRadioON'))
+        #     arduinoRBC.write(str.encode('CBRadioON'))
         # else:
-        #     arduino.write(str.encode('CBRadioOFF'))
+        #     arduinoRBC.write(str.encode('CBRadioOFF'))
         
     def vhfRadio(self):
         # if self.vhfRadio_btn.isChecked():
-        #     arduino.write(str.encode('VHFRadioON'))
+        #     arduinoRBC.write(str.encode('VHFRadioON'))
         # else:
-        #     arduino.write(str.encode('VHFRadioOFF'))
+        #     arduinoRBC.write(str.encode('VHFRadioOFF'))
         
     def intercomSystem(self):
         # if self.intercomSystem_btn.isChecked():
-        #     arduino.write(str.encode('IntercomON'))
+        #     arduinoRBC.write(str.encode('IntercomON'))
         # else:
-        #     arduino.write(str.encode('IntercomOFF'))
+        #     arduinoRBC.write(str.encode('IntercomOFF'))
         
 ##################################################################
 #        Rear Body Controller Button actions definitions         #
@@ -257,21 +257,21 @@
 
     def backLightFlasher(self):
         if self.backLightFlasher_btn.isChecked():
-            arduino.write(str.encode('BackEMLightsON'))
+            arduinoRBC.write(str.encode('BackEMLightsON'))
         else:
-            arduino.write(str.encode('BackEMLightsON'))
+            arduinoRBC.write(str.encode('BackEMLightsON'))
 
     def fuelPump(self):
         # if self.fuelPump_btn.isChecked():
-        #     arduino.write(str.encode('FuelPumpON'))
+        #     arduinoRBC.write(str.encode('FuelPumpON'))
         # else:
-        #     arduino.write(str.encode('FuelPumpOFF'))
+        #     arduinoRBC.write(str.encode('FuelPumpOFF'))
         
     def backupLights(self):
         # if self.backupLights_btn.isChecked():
-        #     arduino.write(str.encode('BackupLightsON'))
+        #     arduinoRBC.write(str.encode('BackupLightsON'))
         # else:
-        #     arduino.write(str.encode('BackupLightsOFF'))    
+        #     arduinoRBC.write(str.encode('BackupLightsOFF'))    
     
 
 ##################

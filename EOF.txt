@@ -2,11 +2,11 @@
 #       Connect app buttons to action definitions    #
 ######################################################
         self.emLights_btn.clicked.connect(self.emLights_btn_def)
-        self.nav_btn.clicked.connect(self.nav_btn_def)
+        self.nav_btn.clicked.connect(self.vicControl_btn_def)
         self.backupCam_btn.clicked.connect(self.backupCam_btn_def)
         self.phone_btn.clicked.connect(self.phone_btn_def)
         self.media_btn.clicked.connect(self.media_btn_def)
-        self.vicControl_btn.clicked.connect(self.vicControl_btn_def)
+        self.vicControl_btn.clicked.connect(self.nav_btn_def)
 
 #############################################################
 #	Connect the Buttons to action definitions      #

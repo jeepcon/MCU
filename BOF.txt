@@ -1,0 +1,37 @@
+#!/usr/local/bin/python3
+
+import os
+import sys
+import images_rc
+import time
+import worker
+import settings
+import serial
+import serial.tools.list_ports
+
+def find_arduino(serial_number):
+    for pinfo in serial.tools.list_ports.comports():
+        if pinfo.serial_number == serial_number:
+            return serial.Serial(pinfo.device, 115200)
+    raise IOError("Could not find an arduino - is it plugged in?")
+
+arduinoRBC = find_arduino(serial_number='8573531383235170F140')
+#arduinoMBC = find_arduino(serial_number='85430353531351B09121')
+#arduinoFBC = find_arduino(serial_number='85430353531351B09121')
+
+from PyQt5.QtCore import QThread
+os.putenv('SDL_VIDEODRIVER', 'fbcon')
+from PyQt5 import QtWidgets, QtCore, QtGui
+
+class Ui_MainWindow(QtWidgets.QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.obj = worker.Workers()
+        self.thread = QThread()
+        self.obj.moveToThread(self.thread)
+        self.obj.finished.connect(self.thread.quit)
+        self.thread.started.connect(self.obj.WigWag)
+        self.thread.setTerminationEnabled(True)
+
+        QtWidgets.QMainWindow.__init__(self)
+        self.setupUi(self)
